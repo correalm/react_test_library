@@ -1,14 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByRole('link', { name: /learn react/i });
-  expect(linkElement).toBeInTheDocument();
-});
+test('button has a correct initial color and updates when clicked', async () => {
+  render(<App />)
 
-test('renders learn test library', () => {
-  render(<App />);
-  const learElement = screen.getByText('Learn test library');
-  expect(learElement).toBeInTheDocument();
-});
+  const button = await screen.findByRole('button', { name: 'Change to blue'})
+  
+  expect(button).toHaveStyle({
+    backgroundColor: 'red'
+  })
+
+  fireEvent.click(button)
+  expect(button).toHaveStyle({ backgroundColor: 'blue' })
+  expect(button).toHaveTextContent('Change to blue')
+
+})
