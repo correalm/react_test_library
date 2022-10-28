@@ -22,7 +22,7 @@ test('initial conditionals', () => {
   const button = screen.getByRole('button', { name: 'Change to MidnightBlue' })
   const checkbox = screen.getByRole('checkbox')
 
-  expect(button).toBeEnabled()
+  expect(button).toBeDisabled()
   expect(checkbox).not.toBeChecked()
 })
 
